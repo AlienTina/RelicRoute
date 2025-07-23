@@ -7,6 +7,12 @@ Current features:
  - Calculating the average price of each relic
  - Sorting collection based on price
 
-To build on Desktop, run
+## Building
+
+### Desktop
 ``../gradlew :composeApp:createDistributable``
-the executable will be at composeApp/build/compose/binaries/main/app/org.tinya.relicroute/
+
+The executable will be at composeApp/build/compose/binaries/main/app/org.tinya.relicroute/
+
+### Android
+*shrug*
