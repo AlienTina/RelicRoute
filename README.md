@@ -16,3 +16,6 @@ The executable will be at composeApp/build/compose/binaries/main/app/org.tinya.r
 
 ### Android
 *shrug*
+
+### Web
+Currently doesn't work. Working on fixing it
