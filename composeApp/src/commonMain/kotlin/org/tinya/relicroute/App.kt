@@ -166,10 +166,25 @@ suspend fun CalculatePrice(relic: Relic) : Double {
 fun App() {
     val composableScope = rememberCoroutineScope()
     var openAddDialog by remember { mutableStateOf(false) }
-    var relics by remember { mutableStateOf(Json.decodeFromString<List<Relic>>(settings.getString("relics", "[]")))}
+    var relicCount = settings.getInt("RelicCount", 0)
+    var relicArray = emptyList<Relic>()
+    for(i in 0..relicCount-1){
+        try {
+            relicArray = relicArray + Json.decodeFromString<Relic>(settings.getString("Relic$i", ""))
+        }
+        catch (e: Exception) {
+
+        }
+    }
+    var relics by remember { mutableStateOf(relicArray) }
     var isLoading by remember { mutableStateOf(false) }
     LaunchedEffect(relics){
-        settings.putString("relics", Json.encodeToString(relics))
+        if(relics.isNotEmpty()) {
+            for (i in 0..relics.size - 1) {
+                settings.putString("Relic$i", Json.encodeToString(relics[i]))
+            }
+            settings.putInt("RelicCount", relics.size)
+        }
     }
     var darkTheme by remember { mutableStateOf(settings.getBoolean("darkMode", false)) }
     var colors by remember{ mutableStateOf(if (darkTheme) darkScheme else lightScheme) }
@@ -275,7 +290,10 @@ fun App() {
                         Button(onClick = {
                             composableScope.launch {
                                 isLoading = true
-                                relics = relics + itemManager.GetRelic(relicName)
+                                val relic = itemManager.GetRelic(relicName)
+                                if(relic != Relic())
+                                    relics = relics + itemManager.GetRelic(relicName)
+                                println(relics)
                                 openAddDialog = false
                                 isLoading = false
                             }
