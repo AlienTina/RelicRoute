@@ -158,7 +158,7 @@ suspend fun CalculatePrice(relic: Relic) : Double {
 
         priceCombined += price * chance
     }
-    return priceCombined / 6
+    return priceCombined
 }
 
 @Composable
