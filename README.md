@@ -1,5 +1,5 @@
 # RelicRoute
-App for getting the average profit of your relics
+App for getting the average profit of your relics in Warframe
 
 Current features:
  - Adding Relics to a collection
@@ -10,12 +10,14 @@ Current features:
 ## Building
 
 ### Desktop
-``../gradlew :composeApp:createDistributable``
+``./gradlew :composeApp:createDistributable``
 
 The executable will be at composeApp/build/compose/binaries/main/app/org.tinya.relicroute/
 
 ### Android
-*shrug*
+Use Android Studio
 
 ### Web
-Currently doesn't work. Working on fixing it
+``./gradlew wasmJsBrowserDistribution``
+
+The executable will be at composeApp/build/dist/wasmJs/productionExecutable
